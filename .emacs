@@ -74,7 +74,7 @@
 
 
 (c-add-style "abudnik"
-			  '("my"
+			  '("Ellemtel"
 				(c-basic-offset . 4); Guessed value
 				   (c-offsets-alist
 					(access-label . 0); Guessed value
