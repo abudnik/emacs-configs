@@ -154,7 +154,18 @@
 ;;Ellemtel
 (add-hook 'c++-mode-hook
           '(lambda ()
-             (c-set-style "abudnik")))
+             (c-set-style "abudnik")
+		 	 ;; rebind key mappings
+             (local-set-key (kbd "M-w") 'kill-region)
+			 (local-set-key (kbd "C-w") 'kill-ring-save)
+		   )
+
+)
 (add-hook 'c-mode-hook
           '(lambda ()
-             (c-set-style "abudnik")))
+             (c-set-style "abudnik")
+			 ;; rebind key mappings
+             (local-set-key (kbd "M-w") 'kill-region)
+			 (local-set-key (kbd "C-w") 'kill-ring-save)
+		  )
+)
