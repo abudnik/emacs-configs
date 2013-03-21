@@ -1,9 +1,10 @@
-;;(load-file "/home/Andrew/dev/cedet-bzr/trunk/cedet-devel-load.el")
-(load-file "/home/Andrew/dev/global-6.2.6/gtags.el")
-
 (setq inhibit-splash-screen t)
+(tool-bar-mode 0)
 (load-theme 'tango-dark)
 (fset 'yes-or-no-p 'y-or-n-p)
+
+;;(load-file "/home/Andrew/dev/cedet-bzr/trunk/cedet-devel-load.el")
+(load-file "/home/Andrew/dev/global-6.2.6/gtags.el")
 
 (add-to-list 'load-path "/home/Andrew/.emacs.d/")
 (require 'auto-complete-config)
