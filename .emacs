@@ -3,12 +3,12 @@
 (load-theme 'tango-dark)
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;;(load-file "/home/Andrew/dev/cedet-bzr/trunk/cedet-devel-load.el")
-(load-file "/home/Andrew/dev/global-6.2.6/gtags.el")
 
-(add-to-list 'load-path "/home/Andrew/.emacs.d/")
+(add-to-list 'load-path "~/.emacs.d/")
+(load "auto-complete.el")
+(load "auto-complete-config.el")
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "/home/Andrew/.emacs.d/ac-dict")
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
 
 ;;(desktop-save-mode 1)
@@ -45,7 +45,7 @@
 ;;(global-semanticdb-minor-mode 1)
 
 (auto-fill-mode 1)
-(gtags-mode 1)
+;;(gtags-mode 1)
 
 (add-to-list 'auto-mode-alist '("\\.ipp$" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.h$" . c++-mode))
@@ -67,7 +67,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ede-project-directories (quote ("/home/Andrew/PythonServer" "/home/Andrew/Project/src"))))
+ '(ede-project-directories (quote ("~/PythonServer" "~/Project/src"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
