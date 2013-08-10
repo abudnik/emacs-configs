@@ -12,6 +12,8 @@
                '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0)))
 (fullscreen)
 
+(setq frame-title-format '(buffer-file-name "%f" ("%b")))
+
 (add-to-list 'load-path "~/.emacs.d/")
 (load "auto-complete.el")
 (load "auto-complete-config.el")
