@@ -22,7 +22,7 @@
 (ac-config-default)
 
 ;;(desktop-save-mode 1)
-(setq-default indent-tabs-mode t)
+(setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
 (global-ede-mode 1)
