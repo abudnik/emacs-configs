@@ -67,23 +67,21 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- 
- ;; use mouse and then M-x ecb-store-window-sizes
+ '(ecb-layout-name "myright")
  '(ecb-layout-window-sizes
    (quote
-    (("right1"
+    (("myright"
+      (ecb-directories-buffer-name 0.22761194029850745 . 0.27631578947368424)
+      (ecb-sources-buffer-name 0.22761194029850745 . 0.2236842105263158)
+      (ecb-methods-buffer-name 0.22761194029850745 . 0.3157894736842105)
+      (ecb-history-buffer-name 0.22761194029850745 . 0.18421052631578946))
+     ("right1"
       (ecb-directories-buffer-name 0.22761194029850745 . 0.29411764705882354)
       (ecb-sources-buffer-name 0.22761194029850745 . 0.3382352941176471)
-      (ecb-methods-buffer-name 0.22761194029850745 . 0.35294117647058826))
-     ("left8"
-      (ecb-directories-buffer-name 0.22761194029850745 . 0.29411764705882354)
-      (ecb-sources-buffer-name 0.22761194029850745 . 0.23529411764705882)
-      (ecb-methods-buffer-name 0.22761194029850745 . 0.29411764705882354)
-      (ecb-history-buffer-name 0.22761194029850745 . 0.16176470588235295)))))
+      (ecb-methods-buffer-name 0.22761194029850745 . 0.35294117647058826)))))
  '(ecb-options-version "2.40")
- '(ecb-tip-of-the-day nil)
- '(ecb-layout-name "right1")
  '(ecb-primary-secondary-mouse-buttons (quote mouse-1--C-mouse-1))
+ '(ecb-tip-of-the-day nil)
  '(ede-project-directories (quote ("~/PythonServer" "~/Project/src"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -93,6 +91,8 @@
  )
 
 (ecb-activate)
+
+(global-set-key (kbd "C-c g") 'semantic-symref-symbol) ; Ctrl+c g
 
 
 
