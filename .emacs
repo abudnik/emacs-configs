@@ -1,12 +1,24 @@
 ; start package.el with emacs
-(require 'package)
-; add MELPA to repository list
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
-; initialize package.el
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
 (package-initialize)
+
+(require 'package)
+
+; === KEY BINDINGS ===
+
+; Use [s-X] on Mac OS to bind cmd key instead of Alt key [M-X]
+(global-set-key [M-up] 'windmove-up)              ; move to upper window
+(global-set-key [M-down] 'windmove-down)          ; move to lower window
+(global-set-key [M-right] 'windmove-right)        ; move to right window
+(global-set-key [M-left] 'windmove-left)          ; move to left window
 
 (setq inhibit-splash-screen t)
 (tool-bar-mode 0)
+(menu-bar-mode 0)
 (column-number-mode 1)
 (load-theme 'tango-dark)
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -22,6 +34,16 @@
 
 (setq frame-title-format '(buffer-file-name "%f" ("%b")))
 
+;;(desktop-save-mode 1)
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 2)
+
+
+
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
+
+
 ;;(add-to-list 'load-path "~/.emacs.d/autocomplete")
 ;;(add-to-list 'ac-dictionary-directories "~/.emacs.d/autocomplete/ac-dict")
 ;;(load "auto-complete.el")
@@ -29,10 +51,6 @@
 (require 'auto-complete)
 (require 'auto-complete-config)
 (ac-config-default)
-
-;;(desktop-save-mode 1)
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 2)
 
 (semantic-mode 1)
 (global-semantic-idle-completions-mode)
@@ -141,12 +159,6 @@
               (local-set-key (kbd "C-w") 'kill-ring-save)
             )
  )
-
-
-; === KEY BINDINGS ===
-
-(global-set-key [M-up] 'windmove-up)              ; move to upper window
-(global-set-key [M-down] 'windmove-down)          ; move to lower window
 
 
 ; === WORKAROUNDS ===
