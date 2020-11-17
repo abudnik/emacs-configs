@@ -34,6 +34,10 @@
 
 (setq frame-title-format '(buffer-file-name "%f" ("%b")))
 
+; Setting default directory to $HOME on Mac OS
+(setq default-directory "~/")
+(setq command-line-default-directory "~/")
+
 ;;(desktop-save-mode 1)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
