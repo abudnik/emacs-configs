@@ -35,8 +35,10 @@
 (setq frame-title-format '(buffer-file-name "%f" ("%b")))
 
 ; Setting default directory to $HOME on Mac OS
-(setq default-directory "~/")
-(setq command-line-default-directory "~/")
+(if (string-equal "darwin" (symbol-name system-type))
+    (progn
+      (setq default-directory "~/")
+      (setq command-line-default-directory "~/")))
 
 ;;(desktop-save-mode 1)
 (setq-default indent-tabs-mode nil)
@@ -69,10 +71,24 @@
 ;;(ede-enable-generic-projects)
 
 (auto-fill-mode 1)
-;;(gtags-mode 1)
 
-(add-to-list 'auto-mode-alist '("\\.ipp$" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.h$" . c++-mode))
+
+;; Enable helm-gtags-mode
+(add-hook 'c-mode-hook 'helm-gtags-mode)
+(add-hook 'c++-mode-hook 'helm-gtags-mode)
+(add-hook 'asm-mode-hook 'helm-gtags-mode)
+
+;; Set key bindings
+(eval-after-load "helm-gtags"
+  '(progn
+     (define-key helm-gtags-mode-map (kbd "M-t") 'helm-gtags-find-tag)
+     (define-key helm-gtags-mode-map (kbd "M-r") 'helm-gtags-find-rtag)
+     (define-key helm-gtags-mode-map (kbd "M-s") 'helm-gtags-find-symbol)
+     (define-key helm-gtags-mode-map (kbd "M-g M-p") 'helm-gtags-parse-file)
+     (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
+     (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
+     (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)))
+
 
 
 (custom-set-variables
@@ -82,8 +98,7 @@
  ;; If there is more than one, they won't work right.
  '(ecb-layout-name "myright")
  '(ecb-layout-window-sizes
-   (quote
-    (("myright"
+   '(("myright"
       (ecb-directories-buffer-name 0.22761194029850745 . 0.27631578947368424)
       (ecb-sources-buffer-name 0.22761194029850745 . 0.2236842105263158)
       (ecb-methods-buffer-name 0.22761194029850745 . 0.3157894736842105)
@@ -91,14 +106,13 @@
      ("right1"
       (ecb-directories-buffer-name 0.22761194029850745 . 0.29411764705882354)
       (ecb-sources-buffer-name 0.22761194029850745 . 0.3382352941176471)
-      (ecb-methods-buffer-name 0.22761194029850745 . 0.35294117647058826)))))
+      (ecb-methods-buffer-name 0.22761194029850745 . 0.35294117647058826))))
  '(ecb-options-version "2.50")
- '(ecb-primary-secondary-mouse-buttons (quote mouse-1--C-mouse-1))
+ '(ecb-primary-secondary-mouse-buttons 'mouse-1--C-mouse-1)
  '(ecb-tip-of-the-day nil)
- '(ede-project-directories (quote ("~/PythonServer" "~/Project/src")))
+ '(ede-project-directories '("~/PythonServer" "~/Project/src"))
  '(package-selected-packages
-   (quote
-    (go-mode popup clang-format cmake-mode protobuf-mode auto-complete ecb markdown-mode))))
+   '(helm-gtags go-mode popup clang-format cmake-mode protobuf-mode auto-complete ecb markdown-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -173,3 +187,9 @@
       (apply 'display-buffer-use-some-window args)
     (apply orig-fun args)))
 (advice-add 'display-buffer-at-bottom :around #'display-buffer-at-bottom--display-buffer-at-bottom-around)
+
+; helm-gtags depends on `global`, which is installed via `brew`
+(if (string-equal "darwin" (symbol-name system-type))
+    (progn
+      (setq exec-path (cons "/usr/local/bin" exec-path))
+      (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))))
