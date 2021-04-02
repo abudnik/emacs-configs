@@ -1,3 +1,5 @@
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
 ; start package.el with emacs
 
 ;; Added by Package.el.  This must come before configurations of
@@ -43,10 +45,6 @@
 ;;(desktop-save-mode 1)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
-
-
-
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
 
 
