@@ -94,23 +94,23 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ecb-layout-name "myright")
- '(ecb-layout-window-sizes
-   '(("myright"
-      (ecb-directories-buffer-name 0.22761194029850745 . 0.27631578947368424)
-      (ecb-sources-buffer-name 0.22761194029850745 . 0.2236842105263158)
-      (ecb-methods-buffer-name 0.22761194029850745 . 0.3157894736842105)
-      (ecb-history-buffer-name 0.22761194029850745 . 0.18421052631578946))
-     ("right1"
-      (ecb-directories-buffer-name 0.22761194029850745 . 0.29411764705882354)
-      (ecb-sources-buffer-name 0.22761194029850745 . 0.3382352941176471)
-      (ecb-methods-buffer-name 0.22761194029850745 . 0.35294117647058826))))
- '(ecb-options-version "2.50")
- '(ecb-primary-secondary-mouse-buttons 'mouse-1--C-mouse-1)
- '(ecb-tip-of-the-day nil)
+ ;;'(ecb-layout-name "myright")
+ ;;'(ecb-layout-window-sizes
+ ;;  '(("myright"
+ ;;     (ecb-directories-buffer-name 0.22761194029850745 . 0.27631578947368424)
+ ;;     (ecb-sources-buffer-name 0.22761194029850745 . 0.2236842105263158)
+ ;;     (ecb-methods-buffer-name 0.22761194029850745 . 0.3157894736842105)
+ ;;     (ecb-history-buffer-name 0.22761194029850745 . 0.18421052631578946))
+ ;;    ("right1"
+ ;;     (ecb-directories-buffer-name 0.22761194029850745 . 0.29411764705882354)
+ ;;     (ecb-sources-buffer-name 0.22761194029850745 . 0.3382352941176471)
+ ;;     (ecb-methods-buffer-name 0.22761194029850745 . 0.35294117647058826))))
+ ;;'(ecb-options-version "2.50")
+ ;;'(ecb-primary-secondary-mouse-buttons 'mouse-1--C-mouse-1)
+ ;;'(ecb-tip-of-the-day nil)
  '(ede-project-directories '("~/PythonServer" "~/Project/src"))
  '(package-selected-packages
-   '(helm-gtags go-mode popup clang-format cmake-mode protobuf-mode auto-complete ecb markdown-mode)))
+   '(helm helm-core helm-gtags sr-speedbar go-mode popup clang-format cmake-mode protobuf-mode auto-complete markdown-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -118,7 +118,7 @@
  ;; If there is more than one, they won't work right.
  )
 
-(ecb-activate)
+;;(ecb-activate)
 
 ; === CODE STYLE ===
 
@@ -179,15 +179,24 @@
 
 ; === WORKAROUNDS ===
 
-(defun display-buffer-at-bottom--display-buffer-at-bottom-around (orig-fun &rest args)
-  "Bugfix for ECB: cannot use display-buffer-at-bottom', calldisplay-buffer-use-some-window' instead in ECB frame."
-  (if (and ecb-minor-mode (equal (selected-frame) ecb-frame))
-      (apply 'display-buffer-use-some-window args)
-    (apply orig-fun args)))
-(advice-add 'display-buffer-at-bottom :around #'display-buffer-at-bottom--display-buffer-at-bottom-around)
+;;(defun display-buffer-at-bottom--display-buffer-at-bottom-around (orig-fun &rest args)
+;;  "Bugfix for ECB: cannot use display-buffer-at-bottom', calldisplay-buffer-use-some-window' instead in ECB frame."
+;;  (if (and ecb-minor-mode (equal (selected-frame) ecb-frame))
+;;      (apply 'display-buffer-use-some-window args)
+;;    (apply orig-fun args)))
+;;(advice-add 'display-buffer-at-bottom :around #'display-buffer-at-bottom--display-buffer-at-bottom-around)
 
 ; helm-gtags depends on `global`, which is installed via `brew`
 (if (string-equal "darwin" (symbol-name system-type))
     (progn
       (setq exec-path (cons "/usr/local/bin" exec-path))
       (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))))
+
+(add-hook 'window-setup-hook 'toggle-frame-maximized t)
+;;(add-hook 'window-setup-hook 'toggle-frame-fullscreen t)
+
+(add-hook 'emacs-startup-hook (lambda()
+        (sr-speedbar-open)
+        (with-current-buffer sr-speedbar-buffer-name
+                (setq window-size-fixed 'width))
+        ))
