@@ -42,7 +42,7 @@
       (setq default-directory "~/")
       (setq command-line-default-directory "~/")))
 
-;;(desktop-save-mode 1)
+(desktop-save-mode 1)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 
